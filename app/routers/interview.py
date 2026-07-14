@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from app.schemas.interview import InterviewRequest
 
 router = APIRouter(
     prefix="/interview",
@@ -7,7 +8,8 @@ router = APIRouter(
 
 
 @router.post("/generate-question")
-def generate_question():
+def generate_question(request: InterviewRequest):
     return {
-        "question": "Explain Dependency Injection in FastAPI."
+        "message": "Request received successfully.",
+        "data": request
     }
