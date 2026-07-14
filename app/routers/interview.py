@@ -1,5 +1,7 @@
 from fastapi import APIRouter
+
 from app.schemas.interview import InterviewRequest
+from app.services.interview_service import generate_question
 
 router = APIRouter(
     prefix="/interview",
@@ -8,8 +10,5 @@ router = APIRouter(
 
 
 @router.post("/generate-question")
-def generate_question(request: InterviewRequest):
-    return {
-        "message": "Request received successfully.",
-        "data": request
-    }
+def generate_interview_question(request: InterviewRequest):
+    return generate_question(request)
