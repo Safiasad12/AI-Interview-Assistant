@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routers import health, interview
+from app.routers import health, interview, resume
 
 app = FastAPI(
     title="AI Interview Assistant API",
@@ -10,6 +10,7 @@ app = FastAPI(
 
 app.include_router(health.router)
 app.include_router(interview.router)
+app.include_router(resume.router)
 
 
 @app.get("/")
