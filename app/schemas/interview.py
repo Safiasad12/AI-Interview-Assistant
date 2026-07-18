@@ -6,7 +6,6 @@ class InterviewRequest(BaseModel):
     experience: str
     difficulty: str
 
-
 class EvaluateAnswerRequest(BaseModel):
     question: str
     answer: str
@@ -18,3 +17,19 @@ class EvaluateAnswerResponse(BaseModel):
     improvements: list[str]
     ideal_answer: str
     follow_up_question: str
+
+
+class InterviewItem(BaseModel):
+    question: str
+    answer: str
+
+class InterviewReportRequest(BaseModel):
+    interview: list[InterviewItem]
+
+class InterviewReportResponse(BaseModel):
+    overall_score: int
+    summary: str
+    strengths: list[str]
+    weaknesses: list[str]
+    recommendations: list[str]
+    hire_recommendation: str
