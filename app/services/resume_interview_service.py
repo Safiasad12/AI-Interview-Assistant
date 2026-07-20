@@ -9,6 +9,10 @@ from app.prompts.resume_interview_prompt import (
     build_resume_interview_prompt
 )
 
+from app.prompts.resume_interview_evaluate_prompt import (
+    build_resume_evaluate_prompt
+)
+
 
 def generate_resume_question():
 
@@ -20,6 +24,27 @@ def generate_resume_question():
 
     prompt = build_resume_interview_prompt(
         resume_store.resume_text
+    )
+
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=prompt
+    )
+
+    return json.loads(response.text)
+
+def evaluate_resume_answer(request):
+
+    if not resume_store.resume_text:
+
+        return {
+            "error": "No resume uploaded"
+        }
+
+    prompt = build_resume_evaluate_prompt(
+        resume_store.resume_text,
+        request.question,
+        request.answer
     )
 
     response = client.models.generate_content(
