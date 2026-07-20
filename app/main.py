@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import health, interview, resume
+from app.routers import health, interview, resume, resume_interview
 
 app = FastAPI(
     title="AI Interview Assistant API",
@@ -22,6 +22,7 @@ app.add_middleware(
 app.include_router(health.router)
 app.include_router(interview.router)
 app.include_router(resume.router)
+app.include_router(resume_interview.router)
 
 
 @app.get("/")
